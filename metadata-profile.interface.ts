@@ -39,3 +39,14 @@ export interface MDProfileEntry {
     parameters: ProfileEntryParametersNumber | ProfileEntryParametersBoolean |
         ProfileEntryParametersText | ProfileEntryParametersVocabulary | null;
 }
+
+export interface MDProfileGroup {
+    label: LanguageCodedText[],
+    entries: MDProfileEntry[];
+}
+
+export interface MDProfile {
+    id: string,
+    label: LanguageCodedText[],
+    groups: MDProfileGroup[];
+}
