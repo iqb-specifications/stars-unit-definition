@@ -1,7 +1,7 @@
 asyncapi: 2.5.0
 info:
-  title: nemo-unit-definition
-  description: Data interface for defining metadata for objects based on vocabularies of IQB.
+  title: nemo-player-unit-definition
+  description: Specification for the unit definition of the nemo player.
   license:
     name: CC0 1.0
     url: https://creativecommons.org/publicdomain/zero/1.0/
