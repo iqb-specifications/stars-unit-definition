@@ -1,5 +1,5 @@
 {
-  "$id": "nemo-unit-definition@0.2",
+  "$id": "nemo-unit-definition@0.3",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Nemo Player Unit Definition",
   "description": "Specification for the unit definition of the nemo player.",
@@ -33,9 +33,26 @@
       ],
       "default": "ALWAYS"
     },
-    "mainAudioSource": {
-      "type": "string",
-      "description": "base64 coded string for audio sequence used via upper left button"
+    "mainAudio": {
+      "type": "object",
+      "description": "Paremeters and source of for main audio sequence used via upper left button.",
+      "properties": {
+        "audioSource": {
+          "type": "string",
+          "description": "base64 coded string "
+        },
+        "firstClickLayer": {
+          "type": "boolean",
+          "description": "If true, an overlapping click area covers all available player space to catch first click to start audio.",
+          "default": false
+        },
+        "animateButton": {
+          "type": "boolean",
+          "description": "If true, the audio trigger button is a bit moving to demand attention.",
+          "default": false
+        }
+      },
+      "required": ["audioSource"]
     },
     "interactionType": {
       "type": "string",
@@ -46,7 +63,8 @@
         "WORD_SELECT",
         "DROP",
         "PHONETICS",
-        "WRITE"
+        "WRITE",
+        "FIND_ON_IMAGE"
       ]
     },
     "interactionParameters": {
@@ -69,6 +87,9 @@
         },
         {
           "$ref": "#/definitions/parametersWrite"
+        },
+        {
+          "$ref": "#/definitions/parametersFindOnImage"
         }
       ]
     },
@@ -300,6 +321,36 @@
           "default": 10
         }
       }
+    },
+    "parametersFindOnImage": {
+      "type": "object",
+      "description": "These parameters will be used for interactionType FIND_ON_IMAGE",
+      "properties": {
+        "variableId": {
+          "type": "string",
+          "description": "Name of the variable stored as id in the response data object.",
+          "default": "write"
+         },
+        "imageSource": {
+          "type": "string",
+          "description": "Image base64-coded, filling space as much as possible."
+        },
+        "text": {
+          "type": "string",
+          "description": "Placed below the image."
+        },
+        "gridColumns": {
+          "type": "integer",
+          "description": "Number of columns of the virtual grid placed over the image.",
+          "default": 15
+        },
+        "gridRows": {
+          "type": "integer",
+          "description": "Number of rows of the virtual grid placed over the image.",
+          "default": 10
+        }
+      },
+      "required": ["imageSource"]
     },
     "rule": {
       "description": "Operator and value to compare with",
