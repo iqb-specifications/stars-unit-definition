@@ -11,8 +11,9 @@
       "description": "Ensures that this is the right definition type"
     },
     "version": {
-      "const": "0.2.0",
-      "description": "Ensures that this is the right version"
+      "type": "string",
+      "default": "0.3.0",
+      "description": "Version to better support legacy definitions."
     },
     "backgroundColor": {
       "type": "string",
@@ -101,7 +102,6 @@
   },
   "required": [
     "id",
-    "version",
     "interactionType"
   ],
   "definitions": {
