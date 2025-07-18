@@ -1,0 +1,414 @@
+{
+  "$id": "nemo-unit-definition@0.2",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Nemo Player Unit Definition",
+  "description": "Specification for the unit definition of the nemo player.",
+  "type": "object",
+
+  "properties": {
+    "id": {
+      "const": "nemo-unit-definition",
+      "description": "Ensures that this is the right definition type"
+    },
+    "version": {
+      "const": "0.2.0",
+      "description": "Ensures that this is the right version"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "description": "web-color",
+      "examples": ["#ffaa56", "#ff1"],
+      "default": "#fff"
+    },
+    "continueButtonShow": {
+      "type": "string",
+      "description": "Rule if the navigation button to continue is presented",
+      "enum": [
+        "NO",
+        "ALWAYS",
+        "ON_INTERACTION",
+        "ON_ANY_RESPONSE",
+        "ON_FULL_CREDIT"
+      ],
+      "default": "ALWAYS"
+    },
+    "mainAudioSource": {
+      "type": "string",
+      "description": "base64 coded string for audio sequence used via upper left button"
+    },
+    "interactionType": {
+      "type": "string",
+      "description": "Type of interaction",
+      "enum": [
+        "BUTTONS",
+        "SYLLABIFY",
+        "WORD_SELECT",
+        "DROP",
+        "PHONETICS",
+        "WRITE"
+      ]
+    },
+    "interactionParameters": {
+      "description": "Every interaction type needs a different set of parameters.",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/parametersButtons"
+        },
+        {
+          "$ref": "#/definitions/parametersSyllabify"
+        },
+        {
+          "$ref": "#/definitions/parametersWordSelect"
+        },
+        {
+          "$ref": "#/definitions/parametersDrop"
+        },
+        {
+          "$ref": "#/definitions/parametersPhonetics"
+        },
+        {
+          "$ref": "#/definitions/parametersWrite"
+        }
+      ]
+    },
+    "coding": {
+      "type": "array",
+      "description": "Rules for coding and scoring the values",
+      "items": {
+        "$ref": "#/definitions/coding"
+      },
+      "minItems": 1
+    },
+    "audioFeedback": {
+      "type": "object",
+      "description": "",
+      "properties": {
+        "continueButtonAsTrigger": {
+          "type": "boolean",
+          "description": "This will show the continue button unless other rules defined in 'continueButtonShow'. Audio feedback will not be given on every response but on continue button click. After playing feedback, the continue button triggers following rules defined in 'continueButtonShow'.",
+          "default": false
+        },
+        "feedback": {
+          "type": "array",
+          "description": "The feedback will be played for the variable just changed.",
+          "items": {
+            "$ref": "#/definitions/audioFeedback"
+          },
+          "minItems": 1
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "interactionType"
+  ],
+  "definitions": {
+    "option": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "If image or icon is given too, this text is used as alt."
+        },
+        "imageSource": {
+          "type": "string",
+          "description": "Image base64-coded"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon provided by player",
+          "enum": [
+            "CHECK_GREEN",
+            "CLOSE_RED"
+          ]
+        }
+      }
+    },
+    "parametersButtons": {
+      "type": "object",
+      "description": "These parameters will be used for interactionType BUTTONS",
+      "properties": {
+        "variableId": {
+          "type": "string",
+          "description": "Name of the variable stored as id in the response data object.",
+          "default": "buttons"
+        },
+        "multiSelect": {
+          "type": "boolean",
+          "description": "If true, more than one option can be selected.",
+          "default": false
+        },
+        "numberOfRows": {
+          "type": "integer",
+          "description": "The options are arranged in exact this number of rows regardless of the given space (no responsiveness). If an odd number of options is given, the upper row will contain of more options.",
+          "default": 1
+        },
+        "options": {
+          "type": "array",
+          "description": "Each option specifies one button.",
+          "items": {
+            "$ref": "#/definitions/option"
+          },
+          "minItems": 1
+        }
+      },
+      "required": ["options"]
+    },
+    "parametersSyllabify": {
+      "type": "object",
+      "description": "These parameters will be used for interactionType SYLLABIFY",
+      "properties": {
+        "variableId": {
+          "type": "string",
+          "description": "Name of the variable stored as id in the response data object.",
+          "default": "syllabify"
+        },
+        "imageSource": {
+          "type": "string",
+          "description": "Image base64-coded, placed left-hand."
+        },
+        "text": {
+          "type": "string",
+          "description": "If image or icon is given too, this text is used as alt."
+        },
+        "numberOfOptions": {
+          "type": "integer",
+          "description": "Number of options. Every option carries a growing number of hand clapping images.",
+          "default": 5
+        }
+      }
+    },
+    "parametersWordSelect": {
+      "type": "object",
+      "description": "These parameters will be used for interactionType WORD_SELECT",
+      "properties": {
+        "variableId": {
+          "type": "string",
+          "description": "Name of the variable stored as id in the response data object.",
+          "default": "wordSelect"
+        },
+        "imageSource": {
+          "type": "string",
+          "description": "Image base64-coded, placed left or at top."
+        },
+        "text": {
+          "type": "string",
+          "description": "If an image is given too, this text is used as alt."
+        },
+        "buttonsAsRow": {
+          "type": "boolean",
+          "description": "If true, the buttons are arranged side by side in a row at the bottom. If false, they form a column right-hand.",
+          "default": false
+        },
+        "options": {
+          "type": "array",
+          "description": "Each option specifies one button.",
+          "items": {
+            "$ref": "#/definitions/option"
+          },
+          "minItems": 1
+        }
+      },
+      "required": ["options"]
+    },
+    "parametersDrop": {
+      "type": "object",
+      "description": "These parameters will be used for interactionType DROP",
+      "properties": {
+        "variableId": {
+          "type": "string",
+          "description": "Name of the variable stored as id in the response data object.",
+          "default": "drop"
+        },
+        "imageSource": {
+          "type": "string",
+          "description": "Image base64-coded, placed at the bottom."
+        },
+        "text": {
+          "type": "string",
+          "description": "If an image is given too, this text is used as alt."
+        },
+        "options": {
+          "type": "array",
+          "description": "Each option specifies one button.",
+          "items": {
+            "$ref": "#/definitions/option"
+          },
+          "minItems": 1
+        }
+      },
+      "required": ["options"]
+    },
+    "parametersPhonetics": {
+      "type": "object",
+      "description": "These parameters will be used for interactionType PHONETICS",
+      "properties": {
+        "variableId": {
+          "type": "string",
+          "description": "Name of the variable stored as id in the response data object.",
+          "default": "phonetics"
+        },
+        "numberOfOptions": {
+          "type": "integer",
+          "description": "Number of options.",
+          "default": 7
+        }
+      }
+    },
+    "parametersWrite": {
+      "type": "object",
+      "description": "These parameters will be used for interactionType WRITE",
+      "properties": {
+        "variableId": {
+          "type": "string",
+          "description": "Name of the variable stored as id in the response data object.",
+          "default": "write"
+         },
+        "imageSource": {
+          "type": "string",
+          "description": "Image base64-coded, placed at the top."
+        },
+        "text": {
+          "type": "string",
+          "description": "If image is given too, this text is used as alt."
+        },
+        "addBackspaceKey": {
+          "type": "boolean",
+          "description": "If true, a backspace key is added to the keybboard.",
+          "default": true
+        },
+        "addUmlautKeys": {
+          "type": "boolean",
+          "description": "If true, keys for umlauts are added to the keyboard.",
+          "default": true
+        },
+        "keysToAdd": {
+          "type": "array",
+          "description": "All chars/strings in the list are added in a new key row at the bottom. Example: Graphemes",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "examples": ["eu", "au", "ei", "ch", "sch", "ng"],
+          "default": []
+        },
+        "maxInputLength": {
+          "type": "integer",
+          "description": "Maximal number of characters for input.",
+          "default": 10
+        }
+      }
+    },
+    "rule": {
+      "description": "Operator and value to compare with",
+      "type": "object",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "equalsString": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "equalsNumber": {
+              "type": "number"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "greaterThan": {
+              "type": "number"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "lessThan": {
+              "type": "number"
+            }
+          }
+        }
+      ]
+    },
+    "code": {
+      "type": "object",
+      "description": "If more than one rule is given, the first will go.",
+      "properties": {
+        "rule": {
+          "$ref": "#/definitions/rule"
+        },
+        "code": {
+          "type": "integer"
+        },
+        "score": {
+          "type": "integer"
+        }
+      },
+      "required": ["rule", "code", "score"]
+    },
+    "coding": {
+      "type": "object",
+      "properties": {
+        "variableId": {
+           "type": "string",
+           "description": "Name of the variable to be coded."
+        },
+        "source": {
+          "type": "string",
+          "description": "Where the value for evaluation comes from.",
+          "enum": [
+            "VALUE",
+            "VALUE_TO_UPPER",
+            "SUM",
+            "LENGTH"
+          ],
+          "default": "VALUE"
+        },
+        "codes": {
+          "type": "array",
+          "description": "First true code will be taken. If not code matches, code and score will be '0'. If the given code list includes code '0', the next available code will be taken.",
+          "items": {
+            "$ref": "#/definitions/code"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "audioFeedback": {
+      "type": "object",
+      "properties": {
+        "variableId": {
+           "type": "string",
+           "description": "Name of the variable to trigger the feedback."
+        },
+        "source": {
+          "type": "string",
+          "description": "Where the value for evaluation comes from.",
+          "enum": [
+            "VALUE",
+            "CODE",
+            "SCORE"
+          ],
+          "default": "CODE"
+        },
+        "rule": {
+          "$ref": "#/definitions/rule"
+        },
+        "audioSource": {
+          "type": "string",
+          "description": "base64 coded string for audio sequence used via upper left button"
+        }
+      },
+      "required": ["variableId", "rule", "audioSource"]
+    }
+  }
+}
