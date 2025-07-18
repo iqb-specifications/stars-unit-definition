@@ -7,7 +7,7 @@ on:
     branches:
       - main
 
-name: Generate Html und Publish
+name: Generate Html und Publish in gh-pages/docs
 
 jobs:
   deploy-build:
