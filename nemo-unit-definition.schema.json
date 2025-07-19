@@ -35,7 +35,7 @@
     },
     "mainAudio": {
       "type": "object",
-      "description": "Paremeters and source of for main audio sequence used via upper left button.",
+      "description": "Parameters and source for main audio sequence used via upper left button.",
       "properties": {
         "audioSource": {
           "type": "string",
@@ -155,6 +155,26 @@
           "type": "string",
           "description": "Name of the variable stored as id in the response data object.",
           "default": "buttons"
+        },
+        "size": {
+          "type": "string",
+          "description": "Size of button",
+          "enum": [
+            "BIG",
+            "MEDIUM",
+            "SMALL"
+          ],
+          "default": "MEDIUM"
+        },
+        "gap": {
+          "type": "string",
+          "description": "Size of the gap between buttons.",
+          "enum": [
+            "BIG",
+            "MEDIUM",
+            "SMALL"
+          ],
+          "default": "MEDIUM"
         },
         "multiSelect": {
           "type": "boolean",
