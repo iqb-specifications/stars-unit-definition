@@ -12,6 +12,10 @@ Read more:
 
 # Change log
 
+## 0.4
+
+* Release, das jetzt über w3id.org erreichbar ist
+
 ## 0.3
 
 * Bezeichner für Properties und Konstanten geändert (camelCase, Großbuchstaben)
