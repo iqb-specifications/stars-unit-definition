@@ -18,4 +18,4 @@ channels:
 components:
   schemas:
     metadata-values:
-      $ref: '../nemo-unit-definition.schema.json'
+      $ref: '../nemo-player-unit-definition.schema.json'

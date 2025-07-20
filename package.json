@@ -1,5 +1,5 @@
 {
-  "name": "@iqbspecs/nemo-unit-definition",
+  "name": "@iqbspecs/nemo-player-unit-definition",
   "author": "IQB - Institut zur Qualitätsentwicklung im Bildungswesen",
   "license": "CC0-1.0",
   "description": "Specification for the unit definition of the nemo player.",
