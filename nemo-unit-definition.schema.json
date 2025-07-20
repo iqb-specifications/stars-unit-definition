@@ -52,7 +52,8 @@
           "default": false
         }
       },
-      "required": ["audioSource"]
+      "required": ["audioSource"],
+      "additionalProperties": false
     },
     "interactionType": {
       "type": "string",
@@ -125,6 +126,7 @@
     "id",
     "interactionType"
   ],
+  "additionalProperties": false,
   "definitions": {
     "option": {
       "type": "object",
@@ -145,7 +147,8 @@
             "CLOSE_RED"
           ]
         }
-      }
+      },
+      "additionalProperties": false
     },
     "parametersButtons": {
       "type": "object",
@@ -195,7 +198,8 @@
           "minItems": 1
         }
       },
-      "required": ["options"]
+      "required": ["options"],
+      "additionalProperties": false
     },
     "parametersSyllabify": {
       "type": "object",
@@ -219,7 +223,8 @@
           "description": "Number of options. Every option carries a growing number of hand clapping images.",
           "default": 5
         }
-      }
+      },
+      "additionalProperties": false
     },
     "parametersWordSelect": {
       "type": "object",
@@ -252,7 +257,8 @@
           "minItems": 1
         }
       },
-      "required": ["options"]
+      "required": ["options"],
+      "additionalProperties": false
     },
     "parametersDrop": {
       "type": "object",
@@ -280,7 +286,8 @@
           "minItems": 1
         }
       },
-      "required": ["options"]
+      "required": ["options"],
+      "additionalProperties": false
     },
     "parametersPhonetics": {
       "type": "object",
@@ -296,7 +303,8 @@
           "description": "Number of options.",
           "default": 7
         }
-      }
+      },
+      "additionalProperties": false
     },
     "parametersWrite": {
       "type": "object",
@@ -340,7 +348,8 @@
           "description": "Maximal number of characters for input.",
           "default": 10
         }
-      }
+      },
+      "additionalProperties": false
     },
     "parametersFindOnImage": {
       "type": "object",
@@ -370,7 +379,8 @@
           "default": 10
         }
       },
-      "required": ["imageSource"]
+      "required": ["imageSource"],
+      "additionalProperties": false
     },
     "rule": {
       "description": "Operator and value to compare with",
@@ -382,7 +392,8 @@
             "equalsString": {
               "type": "string"
             }
-          }
+          },
+          "additionalProperties": false
         },
         {
           "type": "object",
@@ -390,7 +401,8 @@
             "equalsNumber": {
               "type": "number"
             }
-          }
+          },
+          "additionalProperties": false
         },
         {
           "type": "object",
@@ -398,7 +410,8 @@
             "greaterThan": {
               "type": "number"
             }
-          }
+          },
+          "additionalProperties": false
         },
         {
           "type": "object",
@@ -406,7 +419,8 @@
             "lessThan": {
               "type": "number"
             }
-          }
+          },
+          "additionalProperties": false
         }
       ]
     },
@@ -424,7 +438,8 @@
           "type": "integer"
         }
       },
-      "required": ["rule", "code", "score"]
+      "required": ["rule", "code", "score"],
+      "additionalProperties": false
     },
     "coding": {
       "type": "object",
@@ -452,7 +467,9 @@
           },
           "minItems": 1
         }
-      }
+      },
+      "required": ["codes"],
+      "additionalProperties": false
     },
     "audioFeedback": {
       "type": "object",
@@ -479,7 +496,8 @@
           "description": "base64 coded string for audio sequence used via upper left button"
         }
       },
-      "required": ["variableId", "rule", "audioSource"]
+      "required": ["variableId", "rule", "audioSource"],
+      "additionalProperties": false
     }
   }
 }
