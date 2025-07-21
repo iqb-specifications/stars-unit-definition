@@ -12,6 +12,11 @@ Read more:
 
 # Change log
 
+## 0.5
+
+* Zusätzlicher Parameter für Main-Audio: `maxPlay`
+* default Variablennamen entsprechen dem Interaktionstyp, aber in Großbuchstaben
+
 ## 0.4
 
 * Release, das jetzt über w3id.org erreichbar ist

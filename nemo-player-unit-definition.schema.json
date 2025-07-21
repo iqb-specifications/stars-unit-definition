@@ -1,5 +1,5 @@
 {
-  "$id": "nemo-player-unit-definition@0.4",
+  "$id": "nemo-player-unit-definition@0.5",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Nemo Player Unit Definition",
   "description": "Specification for the unit definition of the nemo player.",
@@ -12,7 +12,7 @@
     },
     "version": {
       "type": "string",
-      "default": "0.4",
+      "default": "0.5",
       "description": "Version to better support legacy definitions."
     },
     "backgroundColor": {
@@ -50,6 +50,11 @@
           "type": "boolean",
           "description": "If true, the audio trigger button is a bit moving to demand attention.",
           "default": false
+        },
+        "maxPlay": {
+          "type": "integer",
+          "description": "Maximum number of plays. If '0', then no limit exists.",
+          "default": 0
         }
       },
       "required": ["audioSource"],
@@ -157,7 +162,7 @@
         "variableId": {
           "type": "string",
           "description": "Name of the variable stored as id in the response data object.",
-          "default": "buttons"
+          "default": "BUTTONS"
         },
         "size": {
           "type": "string",
@@ -208,7 +213,7 @@
         "variableId": {
           "type": "string",
           "description": "Name of the variable stored as id in the response data object.",
-          "default": "syllabify"
+          "default": "SYLLABIFY"
         },
         "imageSource": {
           "type": "string",
@@ -233,7 +238,7 @@
         "variableId": {
           "type": "string",
           "description": "Name of the variable stored as id in the response data object.",
-          "default": "wordSelect"
+          "default": "WORD_SELECT"
         },
         "imageSource": {
           "type": "string",
@@ -267,7 +272,7 @@
         "variableId": {
           "type": "string",
           "description": "Name of the variable stored as id in the response data object.",
-          "default": "drop"
+          "default": "DROP"
         },
         "imageSource": {
           "type": "string",
@@ -296,7 +301,7 @@
         "variableId": {
           "type": "string",
           "description": "Name of the variable stored as id in the response data object.",
-          "default": "phonetics"
+          "default": "PHONETICS"
         },
         "numberOfOptions": {
           "type": "integer",
@@ -313,7 +318,7 @@
         "variableId": {
           "type": "string",
           "description": "Name of the variable stored as id in the response data object.",
-          "default": "write"
+          "default": "WRITE"
          },
         "imageSource": {
           "type": "string",
@@ -358,7 +363,7 @@
         "variableId": {
           "type": "string",
           "description": "Name of the variable stored as id in the response data object.",
-          "default": "write"
+          "default": "FIND_ON_IMAGE"
          },
         "imageSource": {
           "type": "string",
