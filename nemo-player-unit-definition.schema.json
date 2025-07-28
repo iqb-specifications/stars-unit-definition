@@ -122,13 +122,14 @@
   "additionalProperties": false,
   "definitions": {
     "option": {
+      "description": "Text, image or icon are valid defintions of one button",
       "oneOf": [
         {
           "type": "object",
           "properties": {
             "text": {
               "type": "string",
-              "description": "If image or icon is given too, this text is used as alt."
+              "description": "Will be cropped if not enough space is given."
             }
           }
         }, {
