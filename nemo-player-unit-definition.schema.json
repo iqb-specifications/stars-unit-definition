@@ -217,7 +217,7 @@
             "SHORT_TEXT",
             "CIRCLE"
           ],
-          "default": "LEFT"
+          "default": "MEDIUM_SQUARE"
         },
         "multiSelect": {
           "type": "boolean",
@@ -230,19 +230,26 @@
           "default": 1
         },
         "options" : {
-          "description": "Each option specifies one button.",
           "oneOf": [
             {
-              "buttons": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/option"
-                },
-                "minItems": 1
+              "type": "object",
+              "description": "List of buttons.",
+              "properties": {
+                "buttons": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/option"
+                  },
+                  "minItems": 1
+                }
               }
             }, {
-              "repeatButton": {
-                "$ref": "#/definitions/repeatButton"
+              "type": "object",
+              "description": "Repeat one button.",
+              "properties": {
+                "repeatButton": {
+                  "$ref": "#/definitions/repeatButton"
+                }
               }
             }
           ]
