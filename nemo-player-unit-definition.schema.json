@@ -205,7 +205,7 @@
             "ABOVE_BUTTONS",
             "BOTTOM"
           ],
-          "default": "LEFT"
+          "default": "BOTTOM"
         },
         "buttonType": {
           "type": "string",
