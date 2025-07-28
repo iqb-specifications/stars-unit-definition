@@ -1,5 +1,5 @@
 {
-  "$id": "nemo-player-unit-definition@0.5",
+  "$id": "nemo-player-unit-definition@0.6",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Nemo Player Unit Definition",
   "description": "Specification for the unit definition of the nemo player.",
@@ -12,7 +12,7 @@
     },
     "version": {
       "type": "string",
-      "default": "0.5",
+      "default": "0.6",
       "description": "Version to better support legacy definitions."
     },
     "backgroundColor": {
@@ -65,10 +65,7 @@
       "description": "Type of interaction",
       "enum": [
         "BUTTONS",
-        "SYLLABIFY",
-        "WORD_SELECT",
         "DROP",
-        "PHONETICS",
         "WRITE",
         "FIND_ON_IMAGE"
       ]
@@ -80,16 +77,7 @@
           "$ref": "#/definitions/parametersButtons"
         },
         {
-          "$ref": "#/definitions/parametersSyllabify"
-        },
-        {
-          "$ref": "#/definitions/parametersWordSelect"
-        },
-        {
           "$ref": "#/definitions/parametersDrop"
-        },
-        {
-          "$ref": "#/definitions/parametersPhonetics"
         },
         {
           "$ref": "#/definitions/parametersWrite"
@@ -134,26 +122,44 @@
   "additionalProperties": false,
   "definitions": {
     "option": {
-      "type": "object",
-      "properties": {
-        "text": {
-          "type": "string",
-          "description": "If image or icon is given too, this text is used as alt."
-        },
-        "imageSource": {
-          "type": "string",
-          "description": "Image base64-coded"
-        },
-        "icon": {
-          "type": "string",
-          "description": "Icon provided by player",
-          "enum": [
-            "CHECK_GREEN",
-            "CLOSE_RED"
-          ]
+      "oneOf": [
+        {
+          "text": {
+            "type": "string",
+            "description": "If image or icon is given too, this text is used as alt."
+          }
+        }, {
+          "imageSource": {
+            "type": "string",
+            "description": "Image base64-coded"
+          }
+        }, {
+          "icon": {
+            "type": "string",
+            "description": "Icon provided by player",
+            "enum": [
+              "CHECK_GREEN",
+              "CLOSE_RED",
+              "CLAP_HANDS"
+            ]
+          }
         }
-      },
-      "additionalProperties": false
+      ]
+    },
+    "repeatButton": {
+      "type": "object",
+      "description": "Repeat one selection button several times",
+      "properties": {
+        "option": {
+          "$ref": "#/definitions/option"
+        },
+        "numberOfOptions": {
+          "type": "integer",
+          "description": "Number of options. Every option carries a growing number of hand clapping images.",
+          "default": 5
+        }
+      }
+
     },
     "parametersButtons": {
       "type": "object",
@@ -164,25 +170,45 @@
           "description": "Name of the variable stored as id in the response data object.",
           "default": "BUTTONS"
         },
-        "size": {
+        "imageSource": {
           "type": "string",
-          "description": "Size of button",
-          "enum": [
-            "BIG",
-            "MEDIUM",
-            "SMALL"
-          ],
-          "default": "MEDIUM"
+          "description": "Stimulus image base64-coded."
         },
-        "gap": {
+        "imagePosition": {
           "type": "string",
-          "description": "Size of the gap between buttons.",
+          "description": "Position of stimulus image",
           "enum": [
-            "BIG",
-            "MEDIUM",
-            "SMALL"
+            "TOP",
+            "LEFT"
           ],
-          "default": "MEDIUM"
+          "default": "LEFT"
+        },
+        "text": {
+          "type": "string",
+          "description": "Stimulus text."
+        },
+        "textPosition": {
+          "type": "string",
+          "description": "Position of stimulus text",
+          "enum": [
+            "ABOVE_IMAGE",
+            "ABOVE_BUTTONS",
+            "BOTTOM"
+          ],
+          "default": "LEFT"
+        },
+        "buttonType": {
+          "type": "string",
+          "description": "Variant of button styling",
+          "enum": [
+            "BIG_SQUARE",
+            "MEDIUM_SQUARE",
+            "SMALL_SQUARE",
+            "LONG_TEXT",
+            "SHORT_TEXT",
+            "CIRCLE"
+          ],
+          "default": "LEFT"
         },
         "multiSelect": {
           "type": "boolean",
@@ -194,72 +220,23 @@
           "description": "The options are arranged in exact this number of rows regardless of the given space (no responsiveness). If an odd number of options is given, the upper row will contain of more options.",
           "default": 1
         },
-        "options": {
-          "type": "array",
+        "options" : {
           "description": "Each option specifies one button.",
-          "items": {
-            "$ref": "#/definitions/option"
-          },
-          "minItems": 1
-        }
-      },
-      "required": ["options"],
-      "additionalProperties": false
-    },
-    "parametersSyllabify": {
-      "type": "object",
-      "description": "These parameters will be used for interactionType SYLLABIFY",
-      "properties": {
-        "variableId": {
-          "type": "string",
-          "description": "Name of the variable stored as id in the response data object.",
-          "default": "SYLLABIFY"
-        },
-        "imageSource": {
-          "type": "string",
-          "description": "Image base64-coded, placed left-hand."
-        },
-        "text": {
-          "type": "string",
-          "description": "If image or icon is given too, this text is used as alt."
-        },
-        "numberOfOptions": {
-          "type": "integer",
-          "description": "Number of options. Every option carries a growing number of hand clapping images.",
-          "default": 5
-        }
-      },
-      "additionalProperties": false
-    },
-    "parametersWordSelect": {
-      "type": "object",
-      "description": "These parameters will be used for interactionType WORD_SELECT",
-      "properties": {
-        "variableId": {
-          "type": "string",
-          "description": "Name of the variable stored as id in the response data object.",
-          "default": "WORD_SELECT"
-        },
-        "imageSource": {
-          "type": "string",
-          "description": "Image base64-coded, placed left or at top."
-        },
-        "text": {
-          "type": "string",
-          "description": "If an image is given too, this text is used as alt."
-        },
-        "buttonsAsRow": {
-          "type": "boolean",
-          "description": "If true, the buttons are arranged side by side in a row at the bottom. If false, they form a column right-hand.",
-          "default": false
-        },
-        "options": {
-          "type": "array",
-          "description": "Each option specifies one button.",
-          "items": {
-            "$ref": "#/definitions/option"
-          },
-          "minItems": 1
+          "oneOf": [
+            {
+              "buttons": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/option"
+                },
+                "minItems": 1
+              }
+            }, {
+              "repeatButton": {
+                "$ref": "#/definitions/repeatButton"
+              }
+            }
+          ]
         }
       },
       "required": ["options"],
@@ -292,23 +269,6 @@
         }
       },
       "required": ["options"],
-      "additionalProperties": false
-    },
-    "parametersPhonetics": {
-      "type": "object",
-      "description": "These parameters will be used for interactionType PHONETICS",
-      "properties": {
-        "variableId": {
-          "type": "string",
-          "description": "Name of the variable stored as id in the response data object.",
-          "default": "PHONETICS"
-        },
-        "numberOfOptions": {
-          "type": "integer",
-          "description": "Number of options.",
-          "default": 7
-        }
-      },
       "additionalProperties": false
     },
     "parametersWrite": {

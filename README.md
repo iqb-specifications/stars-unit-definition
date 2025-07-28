@@ -12,6 +12,10 @@ Read more:
 
 # Change log
 
+## 0.6
+
+* Interaktionstyp `buttons` ist so erweitert, dass `SYLLABIFY`, `WORD_SELECT` und `PHONETICS` damit abgedeckt sind
+
 ## 0.5
 
 * Zusätzlicher Parameter für Main-Audio: `maxPlay`
