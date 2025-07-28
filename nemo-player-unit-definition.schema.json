@@ -124,24 +124,33 @@
     "option": {
       "oneOf": [
         {
-          "text": {
-            "type": "string",
-            "description": "If image or icon is given too, this text is used as alt."
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "description": "If image or icon is given too, this text is used as alt."
+            }
           }
         }, {
-          "imageSource": {
-            "type": "string",
-            "description": "Image base64-coded"
+          "type": "object",
+          "properties": {
+            "imageSource": {
+              "type": "string",
+              "description": "Image base64-coded"
+            }
           }
         }, {
-          "icon": {
-            "type": "string",
-            "description": "Icon provided by player",
-            "enum": [
-              "CHECK_GREEN",
-              "CLOSE_RED",
-              "CLAP_HANDS"
-            ]
+          "type": "object",
+          "properties": {
+            "icon": {
+              "type": "string",
+              "description": "Icon provided by player",
+              "enum": [
+                "CHECK_GREEN",
+                "CLOSE_RED",
+                "CLAP_HANDS"
+              ]
+            }
           }
         }
       ]
