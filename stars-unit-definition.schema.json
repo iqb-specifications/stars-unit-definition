@@ -1,18 +1,18 @@
 {
-  "$id": "nemo-player-unit-definition@0.6",
+  "$id": "stars-unit-definition@0.6",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Nemo Player Unit Definition",
-  "description": "Specification for the unit definition of the nemo player.",
+  "title": "Stars Player Unit Definition",
+  "description": "Specification for the unit definition of the stars player.",
   "type": "object",
 
   "properties": {
     "id": {
-      "const": "nemo-player-unit-definition",
+      "const": "stars-unit-definition",
       "description": "Ensures that this is the right definition type"
     },
     "version": {
       "type": "string",
-      "default": "0.6",
+      "default": "0.7",
       "description": "Version to better support legacy definitions."
     },
     "backgroundColor": {
@@ -43,7 +43,7 @@
         },
         "firstClickLayer": {
           "type": "boolean",
-          "description": "If true, an overlapping click area covers all available player space to catch first click to start audio.",
+          "description": "If true, an overlapping click area covers all available space to catch first click to start audio.",
           "default": false
         },
         "animateButton": {
@@ -67,7 +67,8 @@
         "BUTTONS",
         "DROP",
         "WRITE",
-        "FIND_ON_IMAGE"
+        "FIND_ON_IMAGE",
+        "VIDEO"
       ]
     },
     "interactionParameters": {
@@ -84,6 +85,9 @@
         },
         {
           "$ref": "#/definitions/parametersFindOnImage"
+        },
+        {
+          "$ref": "#/definitions/parametersVideo"
         }
       ]
     },
@@ -362,6 +366,37 @@
         }
       },
       "required": ["imageSource"],
+      "additionalProperties": false
+    },
+    "parametersVideo": {
+      "type": "object",
+      "description": "These parameters will be used for interactionType VIDEO",
+      "properties": {
+        "variableId": {
+          "type": "string",
+          "description": "Name of the variable stored as id in the response data object. The variable holds the play progress value as parts of 1.",
+          "default": "VIDEO"
+         },
+        "videoSource": {
+          "type": "string",
+          "description": "Video base64-coded, filling space as much as possible."
+        },
+        "text": {
+          "type": "string",
+          "description": "Placed below the video."
+        },
+        "firstClickLayer": {
+          "type": "boolean",
+          "description": "If true, an overlapping click area covers all available space to catch first click to start video.",
+          "default": false
+        },
+        "canStop": {
+          "type": "boolean",
+          "description": "If true, the video can be stopped by clicking on it.",
+          "default": false
+        }
+      },
+      "required": ["videoSource"],
       "additionalProperties": false
     },
     "rule": {
