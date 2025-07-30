@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@0.6",
+  "$id": "stars-unit-definition@0.7",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -201,16 +201,6 @@
           "type": "string",
           "description": "Stimulus text."
         },
-        "textPosition": {
-          "type": "string",
-          "description": "Position of stimulus text",
-          "enum": [
-            "ABOVE_IMAGE",
-            "ABOVE_BUTTONS",
-            "BOTTOM"
-          ],
-          "default": "BOTTOM"
-        },
         "buttonType": {
           "type": "string",
           "description": "Variant of button styling",
@@ -218,8 +208,7 @@
             "BIG_SQUARE",
             "MEDIUM_SQUARE",
             "SMALL_SQUARE",
-            "LONG_TEXT",
-            "SHORT_TEXT",
+            "TEXT",
             "CIRCLE"
           ],
           "default": "MEDIUM_SQUARE"
