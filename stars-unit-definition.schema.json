@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@0.7",
+  "$id": "stars-unit-definition@0.8",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -91,7 +91,7 @@
         }
       ]
     },
-    "coding": {
+    "variableInfo": {
       "type": "array",
       "description": "Rules for coding and scoring the values",
       "items": {
@@ -391,51 +391,42 @@
     "rule": {
       "description": "Operator and value to compare with",
       "type": "object",
-      "oneOf": [
-        {
-          "type": "object",
-          "properties": {
-            "equalsString": {
-              "type": "string"
-            }
-          },
-          "additionalProperties": false
+      "properties": {
+        "method": {
+          "type": "string",
+          "description": "Method to compare value with parameter",
+          "enum": [
+            "EQUALS",
+            "GREATER_THAN",
+            "LESS_THAN"
+          ],
+          "default": "EQUALS"
         },
-        {
-          "type": "object",
-          "properties": {
-            "equalsNumber": {
-              "type": "number"
-            }
-          },
-          "additionalProperties": false
-        },
-        {
-          "type": "object",
-          "properties": {
-            "greaterThan": {
-              "type": "number"
-            }
-          },
-          "additionalProperties": false
-        },
-        {
-          "type": "object",
-          "properties": {
-            "lessThan": {
-              "type": "number"
-            }
-          },
-          "additionalProperties": false
+        "parameter": {
+          "type": "string",
+          "description": "Value to compare with"
         }
-      ]
+      },
+      "required": ["method","parameter"],
+      "additionalProperties": false
     },
     "code": {
       "type": "object",
       "description": "If more than one rule is given, the first will go.",
       "properties": {
-        "rule": {
-          "$ref": "#/definitions/rule"
+        "method": {
+          "type": "string",
+          "description": "Method to compare value with parameter",
+          "enum": [
+            "EQUALS",
+            "GREATER_THAN",
+            "LESS_THAN"
+          ],
+          "default": "EQUALS"
+        },
+        "parameter": {
+          "type": "string",
+          "description": "Value to compare with"
         },
         "code": {
           "type": "integer"
@@ -444,7 +435,7 @@
           "type": "integer"
         }
       },
-      "required": ["rule", "code", "score"],
+      "required": ["method", "parameter", "code", "score"],
       "additionalProperties": false
     },
     "coding": {
@@ -454,14 +445,23 @@
            "type": "string",
            "description": "Name of the variable to be coded."
         },
-        "source": {
+        "responseComplete": {
+          "type": "string",
+          "description": "Parameter to comply with Verona state changed notification",
+          "enum": [
+            "ALWAYS",
+            "ON_ANY_RESPONSE",
+            "ON_FULL_CREDIT"
+          ],
+          "default": "ALWAYS"
+        },
+        "codingSource": {
           "type": "string",
           "description": "Where the value for evaluation comes from.",
           "enum": [
             "VALUE",
             "VALUE_TO_UPPER",
-            "SUM",
-            "LENGTH"
+            "SUM"
           ],
           "default": "VALUE"
         },
