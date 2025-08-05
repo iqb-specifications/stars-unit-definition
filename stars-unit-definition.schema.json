@@ -1,10 +1,9 @@
 {
-  "$id": "stars-unit-definition@0.9",
+  "$id": "stars-unit-definition@0.10",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
   "type": "object",
-
   "properties": {
     "id": {
       "const": "stars-unit-definition",
@@ -18,7 +17,10 @@
     "backgroundColor": {
       "type": "string",
       "description": "web-color",
-      "examples": ["#ffaa56", "#ff1"],
+      "examples": [
+        "#ffaa56",
+        "#ff1"
+      ],
       "default": "#fff"
     },
     "continueButtonShow": {
@@ -57,7 +59,9 @@
           "default": 0
         }
       },
-      "required": ["audioSource"],
+      "required": [
+        "audioSource"
+      ],
       "additionalProperties": false
     },
     "interactionType": {
@@ -68,7 +72,8 @@
         "DROP",
         "WRITE",
         "FIND_ON_IMAGE",
-        "VIDEO"
+        "VIDEO",
+        "IMAGE_ONLY"
       ]
     },
     "interactionParameters": {
@@ -88,6 +93,9 @@
         },
         {
           "$ref": "#/definitions/parametersVideo"
+        },
+        {
+          "$ref": "#/definitions/parametersImageOnly"
         }
       ]
     },
@@ -136,7 +144,8 @@
               "description": "Will be cropped if not enough space is given."
             }
           }
-        }, {
+        },
+        {
           "type": "object",
           "properties": {
             "imageSource": {
@@ -144,7 +153,8 @@
               "description": "Image base64-coded"
             }
           }
-        }, {
+        },
+        {
           "type": "object",
           "properties": {
             "icon": {
@@ -173,7 +183,6 @@
           "default": 5
         }
       }
-
     },
     "parametersButtons": {
       "type": "object",
@@ -223,7 +232,7 @@
           "description": "The options are arranged in exact this number of rows regardless of the given space (no responsiveness). If an odd number of options is given, the upper row will contain of more options.",
           "default": 1
         },
-        "options" : {
+        "options": {
           "oneOf": [
             {
               "type": "object",
@@ -237,7 +246,8 @@
                   "minItems": 1
                 }
               }
-            }, {
+            },
+            {
               "type": "object",
               "description": "Repeat one button.",
               "properties": {
@@ -249,7 +259,9 @@
           ]
         }
       },
-      "required": ["options"],
+      "required": [
+        "options"
+      ],
       "additionalProperties": false
     },
     "parametersDrop": {
@@ -278,7 +290,9 @@
           "minItems": 1
         }
       },
-      "required": ["options"],
+      "required": [
+        "options"
+      ],
       "additionalProperties": false
     },
     "parametersWrite": {
@@ -289,7 +303,7 @@
           "type": "string",
           "description": "Name of the variable stored as id in the response data object.",
           "default": "WRITE"
-         },
+        },
         "imageSource": {
           "type": "string",
           "description": "Image base64-coded, placed at the top."
@@ -315,7 +329,14 @@
             "type": "string",
             "minLength": 1
           },
-          "examples": ["eu", "au", "ei", "ch", "sch", "ng"],
+          "examples": [
+            "eu",
+            "au",
+            "ei",
+            "ch",
+            "sch",
+            "ng"
+          ],
           "default": []
         },
         "maxInputLength": {
@@ -326,6 +347,34 @@
       },
       "additionalProperties": false
     },
+    "findOnImageOption": {
+      "type": "object",
+      "properties": {
+        "positionX": {
+          "type": "integer",
+          "description": "X value as percentage on horizontal axis. 0 => on left border"
+        },
+        "positionY": {
+          "type": "integer",
+          "description": "Y value as percentage on vertical axis. 0 => on top border"
+        },
+        "size": {
+          "type": "string",
+          "description": "every button can vary in size",
+          "enum": [
+            "SMALL",
+            "MEDIUM",
+            "LARGE"
+          ],
+          "default": "MEDIUM"
+        }
+      },
+      "required": [
+        "positionX",
+        "positionY"
+      ],
+      "additionalProperties": false
+    },
     "parametersFindOnImage": {
       "type": "object",
       "description": "These parameters will be used for interactionType FIND_ON_IMAGE",
@@ -334,7 +383,7 @@
           "type": "string",
           "description": "Name of the variable stored as id in the response data object.",
           "default": "FIND_ON_IMAGE"
-         },
+        },
         "imageSource": {
           "type": "string",
           "description": "Image base64-coded, filling space as much as possible."
@@ -343,18 +392,19 @@
           "type": "string",
           "description": "Placed below the image."
         },
-        "gridColumns": {
-          "type": "integer",
-          "description": "Number of columns of the virtual grid placed over the image.",
-          "default": 15
-        },
-        "gridRows": {
-          "type": "integer",
-          "description": "Number of rows of the virtual grid placed over the image.",
-          "default": 10
+        "options": {
+          "type": "array",
+          "description": "Each option specifies one button placed on the image.",
+          "items": {
+            "$ref": "#/definitions/findOnImageOption"
+          },
+          "minItems": 1
         }
       },
-      "required": ["imageSource"],
+      "required": [
+        "imageSource",
+        "options"
+      ],
       "additionalProperties": false
     },
     "parametersVideo": {
@@ -365,7 +415,7 @@
           "type": "string",
           "description": "Name of the variable stored as id in the response data object. The variable holds the play progress value as parts of 1.",
           "default": "VIDEO"
-         },
+        },
         "videoSource": {
           "type": "string",
           "description": "Video base64-coded, filling space as much as possible."
@@ -385,7 +435,24 @@
           "default": false
         }
       },
-      "required": ["videoSource"],
+      "required": [
+        "videoSource"
+      ],
+      "additionalProperties": false
+    },
+    "parametersImageOnly": {
+      "type": "object",
+      "description": "These parameters will be used for interactionType IMAGE_ONLY",
+      "properties": {
+        "imageSource": {
+          "type": "string",
+          "description": "Stimulus image base64-coded.",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "imageSource"
+      ],
       "additionalProperties": false
     },
     "rule": {
@@ -407,7 +474,10 @@
           "description": "Value to compare with"
         }
       },
-      "required": ["method","parameter"],
+      "required": [
+        "method",
+        "parameter"
+      ],
       "additionalProperties": false
     },
     "code": {
@@ -434,15 +504,20 @@
           "type": "integer"
         }
       },
-      "required": ["method", "parameter", "code", "score"],
+      "required": [
+        "method",
+        "parameter",
+        "code",
+        "score"
+      ],
       "additionalProperties": false
     },
     "coding": {
       "type": "object",
       "properties": {
         "variableId": {
-           "type": "string",
-           "description": "Name of the variable to be coded."
+          "type": "string",
+          "description": "Name of the variable to be coded."
         },
         "responseComplete": {
           "type": "string",
@@ -473,15 +548,18 @@
           "minItems": 1
         }
       },
-      "required": ["variableId", "codes"],
+      "required": [
+        "variableId",
+        "codes"
+      ],
       "additionalProperties": false
     },
     "audioFeedback": {
       "type": "object",
       "properties": {
         "variableId": {
-           "type": "string",
-           "description": "Name of the variable to trigger the feedback."
+          "type": "string",
+          "description": "Name of the variable to trigger the feedback."
         },
         "source": {
           "type": "string",
@@ -501,7 +579,11 @@
           "description": "base64 coded string for audio sequence used via upper left button"
         }
       },
-      "required": ["variableId", "rule", "audioSource"],
+      "required": [
+        "variableId",
+        "rule",
+        "audioSource"
+      ],
       "additionalProperties": false
     }
   }
