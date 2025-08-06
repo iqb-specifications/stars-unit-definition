@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@0.10",
+  "$id": "stars-unit-definition@0.11",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -11,7 +11,7 @@
     },
     "version": {
       "type": "string",
-      "default": "0.7",
+      "default": "0.11",
       "description": "Version to better support legacy definitions."
     },
     "backgroundColor": {
@@ -22,6 +22,11 @@
         "#ff1"
       ],
       "default": "#fff"
+    },
+    "ribbonBars": {
+      "type": "boolean",
+      "description": "If true, two striped bars are shown to indicate a special presentation mode.",
+      "default": false
     },
     "continueButtonShow": {
       "type": "string",
@@ -80,7 +85,7 @@
       "description": "Every interaction type needs a different set of parameters.",
       "oneOf": [
         {
-          "$ref": "#/definitions/parametersButtons"
+          "$ref": "#/definitions/parametersImageOnly"
         },
         {
           "$ref": "#/definitions/parametersDrop"
@@ -95,7 +100,7 @@
           "$ref": "#/definitions/parametersVideo"
         },
         {
-          "$ref": "#/definitions/parametersImageOnly"
+          "$ref": "#/definitions/parametersButtons"
         }
       ]
     },
@@ -264,6 +269,21 @@
       ],
       "additionalProperties": false
     },
+    "parametersImageOnly": {
+      "type": "object",
+      "description": "These parameters will be used for interactionType IMAGE_ONLY",
+      "properties": {
+        "imageSource": {
+          "type": "string",
+          "description": "Stimulus image base64-coded.",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "imageSource"
+      ],
+      "additionalProperties": false
+    },
     "parametersDrop": {
       "type": "object",
       "description": "These parameters will be used for interactionType DROP",
@@ -375,7 +395,7 @@
       ],
       "additionalProperties": false
     },
-    "parametersFindOnImage": {
+      "parametersFindOnImage": {
       "type": "object",
       "description": "These parameters will be used for interactionType FIND_ON_IMAGE",
       "properties": {
@@ -402,8 +422,7 @@
         }
       },
       "required": [
-        "imageSource",
-        "options"
+        "imageSource"
       ],
       "additionalProperties": false
     },
@@ -437,21 +456,6 @@
       },
       "required": [
         "videoSource"
-      ],
-      "additionalProperties": false
-    },
-    "parametersImageOnly": {
-      "type": "object",
-      "description": "These parameters will be used for interactionType IMAGE_ONLY",
-      "properties": {
-        "imageSource": {
-          "type": "string",
-          "description": "Stimulus image base64-coded.",
-          "minLength": 1
-        }
-      },
-      "required": [
-        "imageSource"
       ],
       "additionalProperties": false
     },
@@ -490,7 +494,9 @@
           "enum": [
             "EQUALS",
             "GREATER_THAN",
-            "LESS_THAN"
+            "LESS_THAN",
+            "POSITION_COMPARE_5",
+            "POSITION_COMPARE_10"
           ]
         },
         "parameter": {
