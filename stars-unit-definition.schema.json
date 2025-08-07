@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@0.11",
+  "$id": "stars-unit-definition@0.12",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -84,9 +84,6 @@
     "interactionParameters": {
       "description": "Every interaction type needs a different set of parameters.",
       "oneOf": [
-        {
-          "$ref": "#/definitions/parametersImageOnly"
-        },
         {
           "$ref": "#/definitions/parametersDrop"
         },
@@ -191,7 +188,7 @@
     },
     "parametersButtons": {
       "type": "object",
-      "description": "These parameters will be used for interactionType BUTTONS",
+      "description": "These parameters will be used for interactionTypes BUTTONS and IMAGE_ONLY",
       "properties": {
         "variableId": {
           "type": "string",
@@ -264,24 +261,6 @@
           ]
         }
       },
-      "required": [
-        "options"
-      ],
-      "additionalProperties": false
-    },
-    "parametersImageOnly": {
-      "type": "object",
-      "description": "These parameters will be used for interactionType IMAGE_ONLY",
-      "properties": {
-        "imageSource": {
-          "type": "string",
-          "description": "Stimulus image base64-coded.",
-          "minLength": 1
-        }
-      },
-      "required": [
-        "imageSource"
-      ],
       "additionalProperties": false
     },
     "parametersDrop": {
