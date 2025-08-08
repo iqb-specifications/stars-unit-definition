@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@0.12",
+  "$id": "stars-unit-definition@0.13",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -21,7 +21,7 @@
         "#ffaa56",
         "#ff1"
       ],
-      "default": "#fff"
+      "default": "#eeeeee"
     },
     "ribbonBars": {
       "type": "boolean",
@@ -34,7 +34,7 @@
       "enum": [
         "NO",
         "ALWAYS",
-        "ON_INTERACTION",
+        "ON_MAIN_AUDIO_COMPLETE",
         "ON_ANY_RESPONSE",
         "ON_FULL_CREDIT"
       ],
