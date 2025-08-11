@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@0.13",
+  "$id": "stars-unit-definition@0.14",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -36,7 +36,7 @@
         "ALWAYS",
         "ON_MAIN_AUDIO_COMPLETE",
         "ON_ANY_RESPONSE",
-        "ON_FULL_CREDIT"
+        "ON_RESPONSES_COMPLETE"
       ],
       "default": "ALWAYS"
     },
@@ -62,6 +62,11 @@
           "type": "integer",
           "description": "Maximum number of plays. If '0', then no limit exists.",
           "default": 0
+        },
+        "disableInteractionUntilComplete": {
+          "type": "boolean",
+          "description": "If true, any interaction is disabled until the main audio has been played at least once. The continue button is not affected by this.",
+          "default": false
         }
       },
       "required": [
@@ -113,10 +118,14 @@
       "type": "object",
       "description": "",
       "properties": {
-        "continueButtonAsTrigger": {
-          "type": "boolean",
-          "description": "This will show the continue button unless other rules defined in 'continueButtonShow'. Audio feedback will not be given on every response but on continue button click. After playing feedback, the continue button triggers following rules defined in 'continueButtonShow'.",
-          "default": false
+        "trigger": {
+          "type": "string",
+          "description": "Event triggering the evaluation of response(s) and playing feedback",
+          "enum": [
+            "CONTINUE_BUTTON_CLICK",
+            "ANY_RESPONSE"
+          ],
+          "default": "CONTINUE_BUTTON_CLICK"
         },
         "feedback": {
           "type": "array",
@@ -438,31 +447,6 @@
       ],
       "additionalProperties": false
     },
-    "rule": {
-      "description": "Operator and value to compare with",
-      "type": "object",
-      "properties": {
-        "method": {
-          "type": "string",
-          "description": "Method to compare value with parameter",
-          "enum": [
-            "EQUALS",
-            "GREATER_THAN",
-            "LESS_THAN"
-          ],
-          "default": "EQUALS"
-        },
-        "parameter": {
-          "type": "string",
-          "description": "Value to compare with"
-        }
-      },
-      "required": [
-        "method",
-        "parameter"
-      ],
-      "additionalProperties": false
-    },
     "code": {
       "type": "object",
       "description": "If more than one rule is given, the first will go.",
@@ -556,8 +540,19 @@
           ],
           "default": "CODE"
         },
-        "rule": {
-          "$ref": "#/definitions/rule"
+        "method": {
+          "type": "string",
+          "description": "Method to compare value with parameter",
+          "enum": [
+            "EQUALS",
+            "GREATER_THAN",
+            "LESS_THAN"
+          ],
+          "default": "EQUALS"
+        },
+        "parameter": {
+          "type": "string",
+          "description": "Value to compare with"
         },
         "audioSource": {
           "type": "string",
@@ -566,7 +561,7 @@
       },
       "required": [
         "variableId",
-        "rule",
+        "parameter",
         "audioSource"
       ],
       "additionalProperties": false
