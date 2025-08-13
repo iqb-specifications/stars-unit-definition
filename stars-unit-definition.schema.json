@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@0.14",
+  "$id": "stars-unit-definition@0.15",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -35,6 +35,7 @@
         "NO",
         "ALWAYS",
         "ON_MAIN_AUDIO_COMPLETE",
+        "ON_VIDEO_COMPLETE",
         "ON_ANY_RESPONSE",
         "ON_RESPONSES_COMPLETE"
       ],
@@ -368,13 +369,12 @@
         },
         "size": {
           "type": "string",
-          "description": "every button can vary in size",
+          "description": "Every button can vary in size. If this parameter is not given, the size parameter of root/FIND_ON_IMAGE will serve as default.",
           "enum": [
             "SMALL",
             "MEDIUM",
             "LARGE"
-          ],
-          "default": "MEDIUM"
+          ]
         }
       },
       "required": [
@@ -399,6 +399,16 @@
         "text": {
           "type": "string",
           "description": "Placed below the image."
+        },
+        "size": {
+          "type": "string",
+          "description": "Size of circle to mark selected area. If options are given, this parameter works as default.",
+          "enum": [
+            "SMALL",
+            "MEDIUM",
+            "LARGE"
+          ],
+          "default": "MEDIUM"
         },
         "options": {
           "type": "array",
@@ -430,16 +440,6 @@
         "text": {
           "type": "string",
           "description": "Placed below the video."
-        },
-        "firstClickLayer": {
-          "type": "boolean",
-          "description": "If true, an overlapping click area covers all available space to catch first click to start video.",
-          "default": false
-        },
-        "canStop": {
-          "type": "boolean",
-          "description": "If true, the video can be stopped by clicking on it.",
-          "default": false
         }
       },
       "required": [
