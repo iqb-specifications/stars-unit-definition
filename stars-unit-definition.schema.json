@@ -410,6 +410,10 @@
           ],
           "default": "MEDIUM"
         },
+        "showArea": {
+          "type": "string",
+          "description": "This parameter visualises an area of the image. The position and size of the area is specified as 'x,y-x,y'. Use this parameter to prepare the coding and remove it before the test."
+        },
         "options": {
           "type": "array",
           "description": "Each option specifies one button placed on the image.",
@@ -462,8 +466,7 @@
             "EQUALS",
             "GREATER_THAN",
             "LESS_THAN",
-            "POSITION_COMPARE_5",
-            "POSITION_COMPARE_10"
+            "IN_POSITION_RANGE"
           ]
         },
         "parameter": {
