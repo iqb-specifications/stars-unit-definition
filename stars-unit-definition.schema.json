@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@0.15",
+  "$id": "stars-unit-definition@0.16",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -436,6 +436,10 @@
         "videoSource": {
           "type": "string",
           "description": "Video base64-coded, filling space as much as possible."
+        },
+        "imageSource": {
+          "type": "string",
+          "description": "Image base64-coded, used as placeholder before and after playing."
         },
         "text": {
           "type": "string",
