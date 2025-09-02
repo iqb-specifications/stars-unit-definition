@@ -356,34 +356,7 @@
       },
       "additionalProperties": false
     },
-    "findOnImageOption": {
-      "type": "object",
-      "properties": {
-        "positionX": {
-          "type": "integer",
-          "description": "X value as percentage on horizontal axis. 0 => on left border"
-        },
-        "positionY": {
-          "type": "integer",
-          "description": "Y value as percentage on vertical axis. 0 => on top border"
-        },
-        "size": {
-          "type": "string",
-          "description": "Every button can vary in size. If this parameter is not given, the size parameter of root/FIND_ON_IMAGE will serve as default.",
-          "enum": [
-            "SMALL",
-            "MEDIUM",
-            "LARGE"
-          ]
-        }
-      },
-      "required": [
-        "positionX",
-        "positionY"
-      ],
-      "additionalProperties": false
-    },
-      "parametersFindOnImage": {
+    "parametersFindOnImage": {
       "type": "object",
       "description": "These parameters will be used for interactionType FIND_ON_IMAGE",
       "properties": {
@@ -413,14 +386,6 @@
         "showArea": {
           "type": "string",
           "description": "This parameter visualises an area of the image. The position and size of the area is specified as 'x,y-x,y'. Use this parameter to prepare the coding and remove it before the test."
-        },
-        "options": {
-          "type": "array",
-          "description": "Each option specifies one button placed on the image.",
-          "items": {
-            "$ref": "#/definitions/findOnImageOption"
-          },
-          "minItems": 1
         }
       },
       "required": [
