@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@0.16",
+  "$id": "stars-unit-definition@0.17",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -182,20 +182,6 @@
         }
       ]
     },
-    "repeatButton": {
-      "type": "object",
-      "description": "Repeat one selection button several times",
-      "properties": {
-        "option": {
-          "$ref": "#/definitions/option"
-        },
-        "numberOfOptions": {
-          "type": "integer",
-          "description": "Number of options. Every option carries a growing number of hand clapping images.",
-          "default": 5
-        }
-      }
-    },
     "parametersButtons": {
       "type": "object",
       "description": "These parameters will be used for interactionTypes BUTTONS and IMAGE_ONLY",
@@ -264,7 +250,19 @@
               "description": "Repeat one button.",
               "properties": {
                 "repeatButton": {
-                  "$ref": "#/definitions/repeatButton"
+                  "type": "object",
+                  "description": "Repeat one selection button several times",
+                  "properties": {
+                    "numberOfOptions": {
+                      "type": "integer",
+                      "description": "Number of options. Every option carries a growing number of hand clapping images.",
+                      "default": 5
+                    },
+                    "option": {
+                      "$ref": "#/definitions/option"
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
