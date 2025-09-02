@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@0.17",
+  "$id": "stars-unit-definition@0.18",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -155,7 +155,8 @@
               "type": "string",
               "description": "Will be cropped if not enough space is given."
             }
-          }
+          },
+          "additionalProperties": false
         },
         {
           "type": "object",
@@ -164,7 +165,8 @@
               "type": "string",
               "description": "Image base64-coded"
             }
-          }
+          },
+          "additionalProperties": false
         },
         {
           "type": "object",
@@ -178,7 +180,8 @@
                 "CLAP_HANDS"
               ]
             }
-          }
+          },
+          "additionalProperties": false
         }
       ]
     },
@@ -243,7 +246,8 @@
                   },
                   "minItems": 1
                 }
-              }
+              },
+              "additionalProperties": false
             },
             {
               "type": "object",
@@ -264,7 +268,8 @@
                   },
                   "additionalProperties": false
                 }
-              }
+              },
+              "additionalProperties": false
             }
           ]
         }
