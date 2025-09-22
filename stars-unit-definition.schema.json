@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@0.18",
+  "$id": "stars-unit-definition@0.19",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -37,6 +37,7 @@
         "ON_MAIN_AUDIO_COMPLETE",
         "ON_VIDEO_COMPLETE",
         "ON_ANY_RESPONSE",
+        "ON_AUDIO_AND_RESPONSE",
         "ON_RESPONSES_COMPLETE"
       ],
       "default": "ALWAYS"
@@ -288,6 +289,24 @@
         "imageSource": {
           "type": "string",
           "description": "Image base64-coded, placed at the bottom."
+        },
+        "imagePosition": {
+          "type": "string",
+          "description": "Position of the big main image.",
+          "enum": [
+            "TOP",
+            "BOTTOM"
+          ],
+          "default": "BOTTOM"
+        },
+        "imageLandingXY": {
+          "type": "string",
+          "description": "Point on image where the selected button image will land (x,y - percentage of main image).",
+          "examples": [
+            "12,45",
+            "50,50"
+          ],
+          "default": "50,50"
         },
         "text": {
           "type": "string",
