@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@0.19",
+  "$id": "stars-unit-definition@1.0",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -178,7 +178,12 @@
               "enum": [
                 "CHECK_GREEN",
                 "CLOSE_RED",
-                "CLAP_HANDS"
+                "CLAP_HANDS",
+                "SMILEY_1",
+                "SMILEY_2",
+                "SMILEY_3",
+                "SMILEY_4",
+                "SMILEY_5"
               ]
             }
           },
@@ -227,6 +232,11 @@
         "multiSelect": {
           "type": "boolean",
           "description": "If true, more than one option can be selected.",
+          "default": false
+        },
+        "triggerNavigationOnSelect": {
+          "type": "boolean",
+          "description": "If true, the selection of any button triggers the navigation to the next unit (with short delay). No feedback is possible.",
           "default": false
         },
         "numberOfRows": {
