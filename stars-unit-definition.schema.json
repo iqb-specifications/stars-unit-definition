@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@1.1",
+  "$id": "stars-unit-definition@1.2",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -221,6 +221,18 @@
           ],
           "default": "LEFT"
         },
+        "imageMaxWidthPx": {
+          "type": "integer",
+          "default": 0
+        },
+        "imageMaxHeightPx": {
+          "type": "integer",
+          "default": 0
+        },
+        "imageUseFullArea": {
+          "type": "boolean",
+          "default": false
+        },
         "text": {
           "type": "string",
           "description": "Stimulus text."
@@ -233,7 +245,9 @@
             "MEDIUM_SQUARE",
             "SMALL_SQUARE",
             "TEXT",
-            "CIRCLE"
+            "CIRCLE",
+            "EXTRA_LARGE_SQUARE",
+            "LONG_RECTANGLE"
           ],
           "default": "MEDIUM_SQUARE"
         },
