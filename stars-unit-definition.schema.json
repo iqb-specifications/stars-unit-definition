@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@1.2",
+  "$id": "stars-unit-definition@1.3",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -48,7 +48,7 @@
       "properties": {
         "audioSource": {
           "type": "string",
-          "description": "base64 coded string "
+          "description": "base64 coded string"
         },
         "firstClickLayer": {
           "type": "boolean",
@@ -76,17 +76,61 @@
       ],
       "additionalProperties": false
     },
+    "openingImage": {
+      "description": "Centered (big) image to be presented before any interaction takes effect.",
+      "type": "object",
+      "properties": {
+        "imageSource": {
+          "type": "string",
+          "description": "Image base64-coded"
+        },
+        "startTrigger": {
+          "description": "Event triggering the start of the presentation",
+          "type": "string",
+          "enum": [
+            "UNIT_START",
+            "START_BUTTON",
+            "MAIN_AUDIO_END"
+          ],
+          "default": "UNIT_START"
+        },
+        "startDelayMS": {
+          "description": "Delay between trigger event and start in milliseconds",
+          "type": "integer",
+          "default": 0
+        },
+        "presentationDurationMS": {
+          "description": "Timespan/duration of presentation of the image in milliseconds",
+          "type": "integer",
+          "default": 1500
+        },
+        "audioSource": {
+          "type": "string",
+          "description": "Audio to be played right after image presentation; base64 coded string"
+        }
+      },
+      "required": [
+        "imageSource"
+      ],
+      "additionalProperties": false
+    },
     "interactionType": {
       "type": "string",
       "description": "Type of interaction",
       "enum": [
         "BUTTONS",
+        "POLYGON_BUTTONS",
         "DROP",
         "WRITE",
         "FIND_ON_IMAGE",
         "VIDEO",
         "IMAGE_ONLY"
       ]
+    },
+    "interactionMaxTimeMS": {
+      "description": "After interaction start (after mainAudio and openingImage if given), the navigation to the next unit is forced when this milliseconds timespan is over.",
+      "type": "integer",
+      "default": 0
     },
     "interactionParameters": {
       "description": "Every interaction type needs a different set of parameters.",
@@ -105,6 +149,9 @@
         },
         {
           "$ref": "#/definitions/parametersButtons"
+        },
+        {
+          "$ref": "#/definitions/parametersPolygonButtons"
         }
       ]
     },
@@ -473,6 +520,51 @@
         "videoSource"
       ],
       "additionalProperties": false
+    },
+    "parametersPolygonButtons": {
+      "type": "object",
+      "description": "These parameters will be used for interactionType POLYGON_BUTTONS",
+      "properties": {
+        "variableId": {
+          "type": "string",
+          "description": "Name of the variable stored as id in the response data object. The variable holds the play progress value as parts of 1.",
+          "default": "POLYGON_BUTTONS"
+        },
+        "multiSelect": {
+          "type": "boolean",
+          "description": "If true, more than one option can be selected.",
+          "default": false
+        },
+        "options": {
+          "type": "array",
+          "description": "Each option specifies one polygon as button.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "points": {
+                "type": "string",
+                "description": "Points describing the polygon as svg element",
+                "examples": [
+                  "60 60,  65 72,  80 60,  90 90, 72 80, 72 85, 50 95",
+                  "15,10  55, 10  45, 20  5, 20"
+                ]
+              },
+              "label": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "points"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "options"
+      ]
     },
     "code": {
       "type": "object",
