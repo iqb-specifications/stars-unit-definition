@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@1.5",
+  "$id": "stars-unit-definition@1.6",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -277,9 +277,19 @@
             "TEXT",
             "CIRCLE",
             "EXTRA_LARGE_SQUARE",
-            "LONG_RECTANGLE"
+            "LONG_RECTANGLE",
+            "TALL_RECTANGLE"
           ],
           "default": "MEDIUM_SQUARE"
+        },
+        "buttonAlignment": {
+          "type": "string",
+          "description": "Alignment of buttons",
+          "enum": [
+            "AUTO",
+            "ROW_BOTTOM"
+          ],
+          "default": "AUTO"
         },
         "multiSelect": {
           "type": "boolean",
@@ -404,6 +414,16 @@
         "text": {
           "type": "string",
           "description": "If image is given too, this text is used as alt."
+        },
+        "keyboardMode": {
+          "type": "string",
+          "description": "Keyboard base layout",
+          "enum": [
+            "CHARACTERS",
+            "NUMBERS_LINE",
+            "NUMBERS_BLOCK"
+          ],
+          "default": "CHARACTERS"
         },
         "addBackspaceKey": {
           "type": "boolean",
