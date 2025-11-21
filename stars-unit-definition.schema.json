@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@1.4",
+  "$id": "stars-unit-definition@1.5",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -11,7 +11,7 @@
     },
     "version": {
       "type": "string",
-      "default": "0.11",
+      "default": "1.5",
       "description": "Version to better support legacy definitions."
     },
     "backgroundColor": {
@@ -28,6 +28,22 @@
       "description": "If true, two striped bars are shown to indicate a special presentation mode.",
       "default": false
     },
+    "firstAudioOptions": {
+      "description": "Options for the first audio to be played (can be openingImage-audio or mainAudio).",
+      "type": "object",
+      "properties": {
+        "firstClickLayer": {
+          "type": "boolean",
+          "description": "If true, an overlapping click area covers all available space to catch first click to start audio.",
+          "default": false
+        },
+        "animateButton": {
+          "type": "boolean",
+          "description": "If true, the audio trigger button is a bit moving to demand attention.",
+          "default": false
+        }
+      }
+    },
     "continueButtonShow": {
       "type": "string",
       "description": "Rule if the navigation button to continue is presented",
@@ -42,6 +58,29 @@
       ],
       "default": "ALWAYS"
     },
+    "openingImage": {
+      "description": "Centered (big) image to be presented before any interaction takes effect and before mainAudio.",
+      "type": "object",
+      "properties": {
+        "audioSource": {
+          "type": "string",
+          "description": "Audio to be played before presentation of image; base64 coded string"
+        },
+        "imageSource": {
+          "type": "string",
+          "description": "Image base64-coded"
+        },
+        "presentationDurationMS": {
+          "description": "Timespan/duration of presentation of the image in milliseconds",
+          "type": "integer",
+          "default": 1500
+        }
+      },
+      "required": [
+        "imageSource"
+      ],
+      "additionalProperties": false
+    },
     "mainAudio": {
       "type": "object",
       "description": "Parameters and source for main audio sequence used via upper left button.",
@@ -49,16 +88,6 @@
         "audioSource": {
           "type": "string",
           "description": "base64 coded string"
-        },
-        "firstClickLayer": {
-          "type": "boolean",
-          "description": "If true, an overlapping click area covers all available space to catch first click to start audio.",
-          "default": false
-        },
-        "animateButton": {
-          "type": "boolean",
-          "description": "If true, the audio trigger button is a bit moving to demand attention.",
-          "default": false
         },
         "maxPlay": {
           "type": "integer",
@@ -73,44 +102,6 @@
       },
       "required": [
         "audioSource"
-      ],
-      "additionalProperties": false
-    },
-    "openingImage": {
-      "description": "Centered (big) image to be presented before any interaction takes effect.",
-      "type": "object",
-      "properties": {
-        "imageSource": {
-          "type": "string",
-          "description": "Image base64-coded"
-        },
-        "startTrigger": {
-          "description": "Event triggering the start of the presentation",
-          "type": "string",
-          "enum": [
-            "UNIT_START",
-            "START_BUTTON",
-            "MAIN_AUDIO_END"
-          ],
-          "default": "UNIT_START"
-        },
-        "startDelayMS": {
-          "description": "Delay between trigger event and start in milliseconds",
-          "type": "integer",
-          "default": 0
-        },
-        "presentationDurationMS": {
-          "description": "Timespan/duration of presentation of the image in milliseconds",
-          "type": "integer",
-          "default": 1500
-        },
-        "audioSource": {
-          "type": "string",
-          "description": "Audio to be played right after image presentation; base64 coded string"
-        }
-      },
-      "required": [
-        "imageSource"
       ],
       "additionalProperties": false
     },
