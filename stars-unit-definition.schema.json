@@ -544,12 +544,12 @@
           "items": {
             "type": "object",
             "properties": {
-              "points": {
+              "svgPath": {
                 "type": "string",
-                "description": "Points describing the polygon as svg element",
+                "description": "Path describing the polygon as svg element",
                 "examples": [
-                  "60 60,  65 72,  80 60,  90 90, 72 80, 72 85, 50 95",
-                  "15,10  55, 10  45, 20  5, 20"
+                  "M 70,340 l 75,-100 l 140,0 l -65,100 z",
+                  "M 200,400 l 0,150 l 150,0 l 0,-150 z"
                 ]
               },
               "label": {
@@ -557,7 +557,7 @@
               }
             },
             "required": [
-              "points"
+              "svgPath"
             ],
             "additionalProperties": false
           },
