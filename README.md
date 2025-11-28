@@ -11,3 +11,13 @@ Read more:
 * [Verona-Interfaces](https://verona-interfaces.github.io/)
 
 Change log see releases.
+
+## For developers
+
+After modifying the spec, set a new version number (2nd line in schema.json).
+
+After committing create a new release using the new version number as tag. This way, the new spec is accessible via w3id.org. Example:
+
+```
+https://w3id.org/iqb/spec/stars-unit-definition/1.6
+```
