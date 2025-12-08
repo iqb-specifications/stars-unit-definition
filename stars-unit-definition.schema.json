@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@1.7",
+  "$id": "stars-unit-definition@1.8",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -252,12 +252,22 @@
         },
         "imagePosition": {
           "type": "string",
-          "description": "Position of stimulus image",
+          "description": "DEPRECATED (Position of stimulus image)",
           "enum": [
             "TOP",
             "LEFT"
           ],
           "default": "LEFT"
+        },
+        "layout": {
+          "type": "string",
+          "description": "Position and alignment of text and image",
+          "enum": [
+            "TOP_CENTER",
+            "LEFT_CENTER",
+            "LEFT_BOTTOM"
+          ],
+          "default": "LEFT_CENTER"
         },
         "imageUseFullArea": {
           "type": "boolean",
