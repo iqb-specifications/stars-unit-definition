@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@1.10",
+  "$id": "stars-unit-definition@2.0",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -69,10 +69,6 @@
         "imageSource": {
           "type": "string",
           "description": "Image base64-coded"
-        },
-        "imageUseFullArea": {
-          "type": "boolean",
-          "default": false
         },
         "presentationDurationMS": {
           "description": "Timespan/duration of presentation of the image in milliseconds",
@@ -300,15 +296,6 @@
             "TALL_RECTANGLE"
           ],
           "default": "MEDIUM_SQUARE"
-        },
-        "buttonAlignment": {
-          "type": "string",
-          "description": "Alignment of buttons",
-          "enum": [
-            "AUTO",
-            "ROW_BOTTOM"
-          ],
-          "default": "AUTO"
         },
         "multiSelect": {
           "type": "boolean",
