@@ -609,18 +609,26 @@
     },
     "code": {
       "type": "object",
-      "description": "If more than one rule is given, the first will go.",
+      "description": "The first code matching the rule will be taken.",
       "properties": {
         "method": {
           "type": "string",
-          "description": "Method to compare value with parameter",
+          "description": "Method to compare with parameter",
           "enum": [
             "EQUALS",
             "GREATER_THAN",
             "LESS_THAN",
-            "IN_POSITION_RANGE",
-            "SUM_CHAR_MATCHES"
+            "IN_POSITION_RANGE"
           ]
+        },
+        "source": {
+          "type": "string",
+          "description": "Source of value the method will be applied to",
+          "enum": [
+            "VALUE",
+            "SUM_CHAR_MATCHES"
+          ],
+          "default": "VALUE"
         },
         "parameter": {
           "type": "string",
