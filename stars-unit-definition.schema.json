@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@2.0",
+  "$id": "stars-unit-definition@2.1",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -586,7 +586,8 @@
         },
         "value": {
           "type": "number",
-          "description": "Value to be placed."
+          "description": "Value to be placed above the target area. If '0' no number will be shown.",
+          "default": 0
         },
         "numberOfRows": {
           "type": "number",
@@ -604,10 +605,7 @@
           "default": 20
         }
       },
-      "additionalProperties": false,
-      "required": [
-        "value"
-      ]
+      "additionalProperties": false
     },
     "code": {
       "type": "object",
@@ -620,7 +618,8 @@
             "EQUALS",
             "GREATER_THAN",
             "LESS_THAN",
-            "IN_POSITION_RANGE"
+            "IN_POSITION_RANGE",
+            "SUM_CHAR_MATCHES"
           ]
         },
         "parameter": {
