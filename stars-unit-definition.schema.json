@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@2.1",
+  "$id": "stars-unit-definition@2.2",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -611,16 +611,6 @@
       "type": "object",
       "description": "The first code matching the rule will be taken.",
       "properties": {
-        "method": {
-          "type": "string",
-          "description": "Method to compare with parameter",
-          "enum": [
-            "EQUALS",
-            "GREATER_THAN",
-            "LESS_THAN",
-            "IN_POSITION_RANGE"
-          ]
-        },
         "source": {
           "type": "string",
           "description": "Source of value the method will be applied to",
@@ -629,6 +619,20 @@
             "SUM_CHAR_MATCHES"
           ],
           "default": "VALUE"
+        },
+        "sourceParameter": {
+          "type": "string",
+          "description": "Value to specify the source"
+        },
+        "method": {
+          "type": "string",
+          "description": "Method to compare source with parameter",
+          "enum": [
+            "EQUALS",
+            "GREATER_THAN",
+            "LESS_THAN",
+            "IN_POSITION_RANGE"
+          ]
         },
         "parameter": {
           "type": "string",
