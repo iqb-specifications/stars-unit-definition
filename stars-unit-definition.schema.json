@@ -611,19 +611,6 @@
       "type": "object",
       "description": "The first code matching the rule will be taken.",
       "properties": {
-        "source": {
-          "type": "string",
-          "description": "Source of value the method will be applied to",
-          "enum": [
-            "VALUE",
-            "SUM_CHAR_MATCHES"
-          ],
-          "default": "VALUE"
-        },
-        "sourceParameter": {
-          "type": "string",
-          "description": "Value to specify the source"
-        },
         "method": {
           "type": "string",
           "description": "Method to compare source with parameter",
@@ -676,9 +663,14 @@
           "enum": [
             "VALUE",
             "VALUE_TO_UPPER",
-            "SUM"
+            "SUM",
+            "SUM_CHAR_MATCHES"
           ],
           "default": "VALUE"
+        },
+        "codingSourceParameter": {
+          "type": "string",
+          "description": "Value to specify the source if needed"
         },
         "codes": {
           "type": "array",
