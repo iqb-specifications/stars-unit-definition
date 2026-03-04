@@ -523,6 +523,11 @@
         "text": {
           "type": "string",
           "description": "Placed below the video."
+        },
+        "triggerNavigationOnEnd": {
+          "type": "boolean",
+          "description": "If true, after finishing video the player will send a unit navigation request to the host.",
+          "default": false
         }
       },
       "required": [
