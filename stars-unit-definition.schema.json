@@ -726,6 +726,31 @@
         "audioSource": {
           "type": "string",
           "description": "base64 coded string for audio sequence used via upper left button"
+        },
+        "showResponse": {
+          "description": "Highlight a button, write a value etc. to illustrate the audio message.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "variableId": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "delayMS": {
+                "description": "Milliseconds from audio start to set the response",
+                "type": "integer",
+                "default": 0
+              }
+            },
+            "required": [
+              "variableId",
+              "value"
+            ],
+            "additionalProperties": false
+          }
         }
       },
       "required": [
