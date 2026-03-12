@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@2.3",
+  "$id": "stars-unit-definition@2.4",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -116,7 +116,8 @@
         "FIND_ON_IMAGE",
         "VIDEO",
         "IMAGE_ONLY",
-        "PLACE_VALUE"
+        "PLACE_VALUE",
+        "NUMBER_LINE"
       ]
     },
     "interactionMaxTimeMS": {
@@ -147,6 +148,9 @@
         },
         {
           "$ref": "#/definitions/parametersPlaceValue"
+        },
+        {
+          "$ref": "#/definitions/parametersNumberLine"
         }
       ]
     },
@@ -610,6 +614,42 @@
           "default": 20
         }
       },
+      "additionalProperties": false
+    },
+    "parametersNumberLine": {
+      "type": "object",
+      "description": "These parameters will be used for interactionType NUMBER_LINE",
+      "properties": {
+        "variableId": {
+          "type": "string",
+          "description": "Name of the variable stored as id in the response data object.",
+          "default": "PLACE_VALUE"
+        },
+        "style": {
+          "type": "string",
+          "description": "Graphical style to show the numbers.",
+          "enum": [
+            "WAVE",
+            "RULER"
+          ],
+          "default": "WAVE"
+        },
+        "firstNumber": {
+          "type": "number",
+          "description": "Defines the beginning number of the line.",
+          "default": 0
+        },
+        "lastNumber": {
+          "type": "number",
+          "description": "Defines the end of the line.",
+          "default": 20
+        },
+        "numberInput": {
+          "type": "number",
+          "description": "Defines the number to be changed by testee."
+        }
+      },
+      "required": ["numberInput"],
       "additionalProperties": false
     },
     "code": {
