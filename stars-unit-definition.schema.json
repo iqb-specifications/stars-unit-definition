@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@2.4",
+  "$id": "stars-unit-definition@2.5",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -117,7 +117,8 @@
         "VIDEO",
         "IMAGE_ONLY",
         "PLACE_VALUE",
-        "NUMBER_LINE"
+        "NUMBER_LINE",
+        "PYRAMID"
       ]
     },
     "interactionMaxTimeMS": {
@@ -151,6 +152,9 @@
         },
         {
           "$ref": "#/definitions/parametersNumberLine"
+        },
+        {
+          "$ref": "#/definitions/parametersPyramid"
         }
       ]
     },
@@ -623,7 +627,7 @@
         "variableId": {
           "type": "string",
           "description": "Name of the variable stored as id in the response data object.",
-          "default": "PLACE_VALUE"
+          "default": "NUMBER_LINE"
         },
         "style": {
           "type": "string",
@@ -650,6 +654,43 @@
         }
       },
       "required": ["numberInput"],
+      "additionalProperties": false
+    },
+    "parametersPyramid": {
+      "type": "object",
+      "description": "These parameters will be used for interactionType PYRAMID",
+      "properties": {
+        "variableId": {
+          "type": "string",
+          "description": "Name of the variable stored as id in the response data object.",
+          "default": "PYRAMID"
+        },
+        "example": {
+          "type": "object",
+          "description": "If given, left hand a pyramid of these numbers will be placed as an example.",
+          "properties": {
+            "topNumber": {
+              "type": "number",
+              "description": "Placed on top."
+            },
+            "bottomLeftNumber": {
+              "type": "number",
+              "description": "Placed on bottom left."
+            },
+            "bottomRightNumber": {
+              "type": "number",
+              "description": "Placed on bottom right."
+            }
+          },
+          "required": ["topNumber", "bottomLeftNumber", "bottomRightNumber"],
+          "additionalProperties": false
+        },
+        "topNumber": {
+          "type": "number",
+          "description": "Placed on top."
+        }
+      },
+      "required": ["topNumber"],
       "additionalProperties": false
     },
     "code": {
