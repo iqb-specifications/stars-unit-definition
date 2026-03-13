@@ -118,7 +118,8 @@
         "IMAGE_ONLY",
         "PLACE_VALUE",
         "NUMBER_LINE",
-        "PYRAMID"
+        "PYRAMID",
+        "EQUATION"
       ]
     },
     "interactionMaxTimeMS": {
@@ -155,6 +156,9 @@
         },
         {
           "$ref": "#/definitions/parametersPyramid"
+        },
+        {
+          "$ref": "#/definitions/parametersEquation"
         }
       ]
     },
@@ -691,6 +695,40 @@
         }
       },
       "required": ["topNumber"],
+      "additionalProperties": false
+    },
+    "parametersEquation": {
+      "type": "object",
+      "description": "These parameters will be used for interactionType EQUATION",
+      "properties": {
+        "variableId": {
+          "type": "string",
+          "description": "Name of the variable stored as id in the response data object.",
+          "default": "EQUATION"
+        },
+        "fixOperand1": {
+          "type": "number",
+          "description": "If given, the first operand will be fixed and not an input."
+        },
+        "operators": {
+          "type": "array",
+          "description": "If only one operator is given, this operator will be fixed and not an input.",
+          "items": {
+            "type": "string"
+          },
+          "examples": [["+", "-"]],
+          "minItems": 1
+        },
+        "fixOperand2": {
+          "type": "number",
+          "description": "If given, the second operand will be fixed and not an input."
+        },
+        "fixResult": {
+          "type": "number",
+          "description": "If given, the equation result will be fixed and not an input."
+        }
+      },
+      "required": ["operators"],
       "additionalProperties": false
     },
     "code": {
