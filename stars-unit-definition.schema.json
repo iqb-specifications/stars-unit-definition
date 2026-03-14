@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@2.5",
+  "$id": "stars-unit-definition@2.6",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -706,6 +706,10 @@
           "description": "Name of the variable stored as id in the response data object.",
           "default": "EQUATION"
         },
+        "imageSource": {
+          "type": "string",
+          "description": "Image base64-coded; placed above the equation."
+        },
         "fixOperand1": {
           "type": "number",
           "description": "If given, the first operand will be fixed and not an input."
@@ -716,7 +720,7 @@
           "items": {
             "type": "string"
           },
-          "examples": [["+", "-"]],
+          "examples": [["+", "-"], ["+", "-", "*"]],
           "minItems": 1
         },
         "fixOperand2": {
