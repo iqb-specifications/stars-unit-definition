@@ -160,6 +160,9 @@
         },
         {
           "$ref": "#/definitions/parametersEquation"
+        },
+        {
+          "$ref": "#/definitions/parametersMetaButtons"
         }
       ]
     },
@@ -762,6 +765,18 @@
         }
       },
       "required": ["operators"],
+      "additionalProperties": false
+    },
+    "parametersMetaButtons": {
+      "type": "object",
+      "description": "These parameters will be used for interactionType META_BUTTONS",
+      "properties": {
+        "variableId": {
+          "type": "string",
+          "description": "Name of the variable stored as id in the response data object.",
+          "default": "META"
+        }
+      },
       "additionalProperties": false
     },
     "code": {
