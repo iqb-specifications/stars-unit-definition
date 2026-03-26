@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@2.6",
+  "$id": "stars-unit-definition@2.7",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -119,7 +119,8 @@
         "PLACE_VALUE",
         "NUMBER_LINE",
         "PYRAMID",
-        "EQUATION"
+        "EQUATION",
+        "META_BUTTONS"
       ]
     },
     "interactionMaxTimeMS": {
@@ -191,7 +192,35 @@
           },
           "minItems": 1
         }
-      }
+      },
+      "required": [
+        "feedback"
+      ],
+      "additionalProperties": false
+    },
+    "closingMetaButtons": {
+      "type": "object",
+      "description": "If given, four meta buttons are presented as last interaction.",
+      "properties": {
+        "variableIdMetaSelection": {
+          "type": "string",
+          "description": "Name of the variable for the selected meta button 1-4.",
+          "default": "META_SELECTION"
+        },
+        "variableIdReference": {
+          "type": "string",
+          "description": "Name of the variable providing the score for calculation of meta outcome."
+        },
+        "variableIdMetaOutcome": {
+          "type": "string",
+          "description": "Name of the variable for the combined outcome selection x reference.",
+          "default": "META_OUTCOME"
+        }
+      },
+      "required": [
+        "variableIdReference"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [
