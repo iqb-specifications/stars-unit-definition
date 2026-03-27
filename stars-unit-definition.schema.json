@@ -670,7 +670,8 @@
           "description": "Graphical style to show the numbers.",
           "enum": [
             "WAVE",
-            "RULER"
+            "RULER",
+            "BLOCK"
           ],
           "default": "WAVE"
         },
@@ -679,17 +680,33 @@
           "description": "Defines the beginning number of the line.",
           "default": 0
         },
+        "leadingNumbers": {
+          "description": "Instead of 'firstNumber', all numbers before the input field can be given.",
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minLength": 1
+          }
+        },
         "lastNumber": {
           "type": "number",
           "description": "Defines the end of the line.",
           "default": 20
         },
+        "trailingNumbers": {
+          "description": "Instead of 'lastNumber', all numbers after the input field can be given.",
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minLength": 1
+          }
+        },
         "numberInput": {
           "type": "number",
-          "description": "Defines the number to be changed by testee."
+          "description": "If 'firstNumber' and 'lastNumber' are given, this number sets the value to be changed by testee.",
+          "default": 10
         }
       },
-      "required": ["numberInput"],
       "additionalProperties": false
     },
     "parametersPyramid": {
