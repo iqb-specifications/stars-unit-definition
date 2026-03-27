@@ -807,7 +807,8 @@
             "EQUALS",
             "GREATER_THAN",
             "LESS_THAN",
-            "IN_POSITION_RANGE"
+            "IN_POSITION_RANGE",
+            "REGEX_MATCH"
           ]
         },
         "parameter": {
@@ -853,7 +854,8 @@
             "VALUE",
             "VALUE_TO_UPPER",
             "SUM",
-            "SUM_CHAR_MATCHES"
+            "SUM_CHAR_MATCHES",
+            "REGEX_FRACTION"
           ],
           "default": "VALUE"
         },
