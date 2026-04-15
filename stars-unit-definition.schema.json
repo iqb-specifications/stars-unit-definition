@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@3.0",
+  "$id": "stars-unit-definition@4.0",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -128,11 +128,6 @@
         "EQUATION",
         "META_BUTTONS"
       ]
-    },
-    "interactionMaxTimeMS": {
-      "description": "After interaction start (after mainAudio and openingImage if given), the navigation to the next unit is forced when this milliseconds timespan is over.",
-      "type": "integer",
-      "default": 0
     },
     "interactionParameters": {
       "description": "Every interaction type needs a different set of parameters.",
