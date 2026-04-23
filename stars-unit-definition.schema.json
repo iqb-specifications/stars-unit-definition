@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@3.0",
+  "$id": "stars-unit-definition@3.1",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -219,6 +219,11 @@
           "type": "string",
           "description": "Name of the variable for the combined outcome selection x reference.",
           "default": "META_OUTCOME"
+        },
+        "triggerNavigationOnSelect": {
+          "type": "boolean",
+          "description": "If true, the selection of any button triggers the navigation to the next unit (with short delay). If false, a continue button must be used instead.",
+          "default": true
         }
       },
       "required": [
