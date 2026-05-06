@@ -649,11 +649,6 @@
           "description": "Value to be placed above the target area. If '0' no number will be shown.",
           "default": 0
         },
-        "numberOfRows": {
-          "type": "number",
-          "description": "Defines the height of the target area.",
-          "default": 5
-        },
         "maxNumberOfTens": {
           "type": "number",
           "description": "Maximum number of ten-bars offered to the testtaker.",
