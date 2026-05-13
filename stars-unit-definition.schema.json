@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@4.0",
+  "$id": "stars-unit-definition@5.0",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -11,7 +11,7 @@
     },
     "version": {
       "type": "string",
-      "default": "1.5",
+      "default": "5.0",
       "description": "Version to better support legacy definitions."
     },
     "backgroundColor": {
@@ -51,7 +51,7 @@
             "KIND",
             "BOLD"
           ],
-          "default": "OFF"
+          "default": "BOLD"
         }
       }
     },
@@ -211,6 +211,10 @@
       "type": "object",
       "description": "If given, four meta buttons are presented as last interaction.",
       "properties": {
+        "audioSource": {
+          "type": "string",
+          "description": "base64 coded string"
+        },
         "variableIdMetaSelection": {
           "type": "string",
           "description": "Name of the variable for the selected meta button 1-4.",
@@ -491,27 +495,49 @@
           "description": "If true, a backspace key is added to the keybboard.",
           "default": true
         },
-        "addUmlautKeys": {
-          "type": "boolean",
-          "description": "If true, keys for umlauts are added to the keyboard.",
-          "default": true
-        },
-        "keysToAdd": {
+        "keysLine1": {
           "type": "array",
-          "description": "All chars/strings in the list are added in a new key row at the bottom. Example: Graphemes",
+          "description": "",
           "items": {
             "type": "string",
             "minLength": 1
           },
+          "default": ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
+        },
+        "keysLine2": {
+          "type": "array",
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "default": ["J", "K", "L", "M", "N", "O", "P", "Q", "R"]
+        },
+        "keysLine3": {
+          "type": "array",
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "default": ["S", "T", "U", "V", "W", "X", "Y", "Z"]
+        },
+        "keysLine4": {
+          "type": "array",
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
           "examples": [
+            "ä",
+            "ö",
+            "ü",
             "eu",
             "au",
             "ei",
             "ch",
             "sch",
             "ng"
-          ],
-          "default": []
+          ]
         },
         "maxInputLength": {
           "type": "integer",
