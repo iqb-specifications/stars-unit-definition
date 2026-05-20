@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@5.0",
+  "$id": "stars-unit-definition@5.1",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -213,7 +213,12 @@
       "properties": {
         "audioSource": {
           "type": "string",
-          "description": "base64 coded string"
+          "description": "base64 coded string; if given, the main audio button will be visible and triggers the audio"
+        },
+        "autoPlay": {
+          "type": "boolean",
+          "description": "If true, the given audio will be played when the closing interaction starts. If false, only the click on the main audio button will start the audio.",
+          "default": true
         },
         "variableIdMetaSelection": {
           "type": "string",
