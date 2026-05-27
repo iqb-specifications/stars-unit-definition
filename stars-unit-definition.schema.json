@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@5.1",
+  "$id": "stars-unit-definition@5.2",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -454,6 +454,15 @@
           "type": "string",
           "description": "If an image is given too, this text is used as alt."
         },
+        "buttonType": {
+          "type": "string",
+          "description": "Variant of button styling",
+          "enum": [
+            "EXTRA_SMALL_SQUARE",
+            "SMALL_SQUARE"
+          ],
+          "default": "SMALL_SQUARE"
+        },
         "options": {
           "type": "array",
           "description": "Each option specifies one button.",
@@ -490,8 +499,7 @@
           "description": "Keyboard base layout",
           "enum": [
             "CHARACTERS",
-            "NUMBERS_LINE",
-            "NUMBERS_BLOCK"
+            "NUMBERS_LINE"
           ],
           "default": "CHARACTERS"
         },
@@ -507,7 +515,7 @@
             "type": "string",
             "minLength": 1
           },
-          "default": ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
+          "default": ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
         },
         "keysLine2": {
           "type": "array",
@@ -515,7 +523,7 @@
           "items": {
             "type": "string"
           },
-          "default": ["J", "K", "L", "M", "N", "O", "P", "Q", "R"]
+          "default": ["j", "k", "l", "m", "n", "o", "p", "q", "r"]
         },
         "keysLine3": {
           "type": "array",
@@ -523,7 +531,7 @@
           "items": {
             "type": "string"
           },
-          "default": ["S", "T", "U", "V", "W", "X", "Y", "Z"]
+          "default": ["s", "t", "u", "v", "w", "x", "y", "z"]
         },
         "keysLine4": {
           "type": "array",
