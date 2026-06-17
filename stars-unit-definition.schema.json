@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@5.2",
+  "$id": "stars-unit-definition@5.3",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -888,7 +888,8 @@
           "enum": [
             "ALWAYS",
             "ON_ANY_RESPONSE",
-            "ON_FULL_CREDIT"
+            "ON_FULL_CREDIT",
+            "ON_ALL_SUB_VALUES"
           ],
           "default": "ALWAYS"
         },
