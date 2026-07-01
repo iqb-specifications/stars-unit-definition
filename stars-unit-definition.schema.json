@@ -1,5 +1,5 @@
 {
-  "$id": "stars-unit-definition@5.3",
+  "$id": "stars-unit-definition@5.4",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Stars Player Unit Definition",
   "description": "Specification for the unit definition of the stars player.",
@@ -200,6 +200,11 @@
             "$ref": "#/definitions/audioFeedback"
           },
           "minItems": 1
+        },
+        "triggerNavigationOnEnd": {
+          "type": "boolean",
+          "description": "If true, after finishing audio the player will send a unit navigation request to the host.",
+          "default": false
         }
       },
       "required": [
