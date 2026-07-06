@@ -361,6 +361,7 @@
             "TEXT",
             "CIRCLE",
             "EXTRA_LARGE_SQUARE",
+            "EXTRA_SMALL_SQUARE",
             "LONG_RECTANGLE",
             "TALL_RECTANGLE"
           ],
